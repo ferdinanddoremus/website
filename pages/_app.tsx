@@ -1,8 +1,26 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import '@/styles/globals.css'
+import type { ReactElement, FC } from 'react'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import type { AppPropsWithLayout } from '@/types/global'
+import DefaultLayout from '@/layouts/default'
+
+interface Props {
+  title?: string,
+  children: ReactElement
 }
 
-export default MyApp
+const EmptyLayout: FC<Props> = ({ children }) => children
+
+function Groremus({ Component, pageProps }: AppPropsWithLayout) {
+  const Layout = !Component.skipLayout
+    ? Component.layout || DefaultLayout
+    : EmptyLayout
+
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
+}
+
+export default Groremus
