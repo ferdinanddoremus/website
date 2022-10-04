@@ -51,7 +51,7 @@ const DefaultLayout: FC<CustomProps> = ({ children }) => {
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="https://www.linkedin.com/in/ferdinand-gror%C3%A9mus-26449b95/">
+                <Link href="https://linkedin.com/in/ferdinand-doremus">
                   <a className="underline font-bold hover:text-slate-600" target="_blank">
                     linkedin
                   </a>
