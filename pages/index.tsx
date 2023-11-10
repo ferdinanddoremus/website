@@ -2,14 +2,13 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { Github, Instagram, Linkedin, Twitter } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import _ from 'lodash'
 import useThrottledCallback from 'beautiful-react-hooks/useThrottledCallback'
 
 const lang = ['javascript', 'typescript', 'next', 'react', 'vue', 'nuxt', 'react native', 'swift', 'node.js']
 
 const Home: NextPage = () => {
-  const ref = useRef()
   const [i, set] = useState(0)
 
   const setIndex = useThrottledCallback(() => {
@@ -35,7 +34,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main ref={ref} className="container m-auto px-4 text-white flex-1 flex justify-center items-center">
+      <main className="container m-auto px-4 text-white flex-1 flex justify-center items-center">
         <div>
           <div className="leading-none flex justify-center items-center gap-[8px]">
             <span className="text-[75px]">🏕️</span>
