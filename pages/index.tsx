@@ -2,9 +2,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { Github, Instagram, Linkedin, Twitter } from 'lucide-react'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import _ from 'lodash'
-import useMouse from 'beautiful-react-hooks/useMouse'
 import useThrottledCallback from 'beautiful-react-hooks/useThrottledCallback'
 
 const lang = ['javascript', 'typescript', 'next', 'react', 'vue', 'nuxt', 'react native', 'swift', 'node.js']
@@ -13,13 +12,20 @@ const Home: NextPage = () => {
   const ref = useRef()
   const [i, set] = useState(0)
 
-  const [position, { onMouseMove }] = useMouse(ref)
-
   const setIndex = useThrottledCallback(() => {
     set(_.random(0, lang.length - 1))
-  }, [], 100)
+  }, [], 50)
 
-  onMouseMove(() => { setIndex() })
+  useEffect(() => {
+    const updateMousePosition = () => setIndex()
+
+    window.addEventListener('mousemove', updateMousePosition)
+
+    return () => {
+      window.removeEventListener('mousemove', updateMousePosition)
+    }
+  }, [])
+
 
   return (
     <>
